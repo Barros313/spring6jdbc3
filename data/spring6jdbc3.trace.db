@@ -376,3 +376,11 @@ SELECT * FROM spring5SPRING6JDBC3.SPEAKER jdbc3 [90079-232]
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-02-06 16:48:10.064006-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM SPRING6JDBC3.SPEAKER\000d\000aSELECT * FROM SPRING6JDBC3.SPEAKER"; expected "identifier"; SQL statement:
+DELETE * FROM SPRING6JDBC3.SPEAKER
+SELECT * FROM SPRING6JDBC3.SPEAKER [42001-232]
+2025-02-06 16:48:26.480527-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM SPRING6JDBC3.SPEAKER\000d\000aSELECT * FROM SPRING6JDBC3.SPEAKER"; expected "identifier"; SQL statement:
+DELETE * FROM SPRING6JDBC3.SPEAKER
+SELECT * FROM SPRING6JDBC3.SPEAKER [42001-232]
