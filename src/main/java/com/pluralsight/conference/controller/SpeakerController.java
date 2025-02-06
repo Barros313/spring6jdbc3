@@ -20,7 +20,7 @@ public class SpeakerController {
     public Speaker createSpeaker(@RequestBody Speaker speaker) {
         System.out.printf("Speaker name: %s%n", speaker.getName());
 
-        return null;
+        return speakerService.create(speaker);
     }
 
     @GetMapping
