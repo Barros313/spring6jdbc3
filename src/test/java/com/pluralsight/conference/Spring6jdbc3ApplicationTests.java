@@ -24,7 +24,7 @@ class Spring6jdbc3ApplicationTests {
                 null, new ParameterizedTypeReference<List<Speaker>>() {
                 });
 
-        assertTrue(speakersResponse.getBody() != null, "Body is null");
+        assertNotNull(speakersResponse.getBody(), "Body is null");
 
         List<Speaker> speakers = speakersResponse.getBody();
 
