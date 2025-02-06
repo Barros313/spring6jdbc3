@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+// @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class Spring6jdbc3ApplicationTests {
 
     @Test
@@ -22,7 +22,7 @@ class Spring6jdbc3ApplicationTests {
         Speaker speaker = new Speaker();
         speaker.setName("Matheus Marques");
 
-        restTemplate.put("http://localhost:8080/", speaker);
+        restTemplate.put("http://localhost:8080/speaker", speaker);
 
     }
 
@@ -31,7 +31,7 @@ class Spring6jdbc3ApplicationTests {
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<List<Speaker>> speakersResponse = restTemplate.exchange(
-                "http://localhost:8080/", HttpMethod.GET,
+                "http://localhost:8080/speaker", HttpMethod.GET,
                 null, new ParameterizedTypeReference<List<Speaker>>() {
                 });
 
