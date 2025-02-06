@@ -12,8 +12,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class Spring6jdbc3ApplicationTests {
+
+    @Test
+    public void testCreateSpeaker() {
+        RestTemplate restTemplate = new RestTemplate();
+
+        Speaker speaker = new Speaker();
+        speaker.setName("Matheus Marques");
+
+        restTemplate.put("http://localhost:8080/", speaker);
+
+    }
 
     @Test
     void testGetSpeakers() {
