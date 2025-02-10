@@ -2,6 +2,10 @@ package com.pluralsight.conference.controller;
 
 import com.pluralsight.conference.model.Speaker;
 import com.pluralsight.conference.service.SpeakerService;
+import com.pluralsight.conference.util.ServiceError;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +20,7 @@ public class SpeakerController {
         this.speakerService = speakerService;
     }
 
-    @PutMapping
+    @PostMapping
     public Speaker createSpeaker(@RequestBody Speaker speaker) {
         System.out.printf("Speaker name: %s%n", speaker.getName());
 
@@ -27,4 +31,46 @@ public class SpeakerController {
     public List<Speaker> getSpeakers() {
         return speakerService.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Speaker getSpeaker(@PathVariable(value = "id") int id) {
+        return speakerService.getSpeaker(id);
+    }
+
+    @PutMapping
+    public Speaker updateSpeaker(@RequestBody Speaker speaker) {
+        System.out.printf("Speaker name: %s%n", speaker.getName());
+
+        return speakerService.update(speaker);
+    }
+
+    @GetMapping("/batch")
+    public Object batch() {
+
+        speakerService.batch();
+
+        return null;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Object deleteSpeaker(@PathVariable(value = "id") int id) {
+        speakerService.delete(id);
+
+        return null;
+    }
+
+    @GetMapping("/test")
+    public Object test() {
+        throw new DataAccessException("Testing Exception Thrown") {
+        };
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ServiceError> handler(RuntimeException exception) {
+
+        ServiceError serviceError = new ServiceError(HttpStatus.OK.value(), exception.getMessage());
+
+        return new ResponseEntity<>(serviceError, HttpStatus.OK);
+    }
+
 }
